@@ -2,8 +2,6 @@
 #include <cstdlib>
 #include <ctime>
 #include "Game.cpp"
-#include "D.h"
-#include "turn.cpp"
 using namespace std;
 int main()
 {

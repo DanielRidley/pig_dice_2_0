@@ -11,9 +11,9 @@ protected:
     int dicesize;
     int rollv;
 public:
-    void Dicetype(int thing)
+    void Dicetype(int choice)
     {
-        dicesize = thing;
+        dicesize = choice;
     }
     void rolld()
     {
@@ -22,4 +22,4 @@ public:
 
     }
 };
-#endif //D_H
+#endif D_H

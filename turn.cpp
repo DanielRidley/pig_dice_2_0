@@ -1,6 +1,7 @@
 #include <iostream>
 #include "D.h"
 #include <cstdlib>
+#include"player.cpp"
 #ifndef turn
 #define turn
 class Turn : public Dice
@@ -8,11 +9,11 @@ class Turn : public Dice
 
 protected:
     int score;
-    int tscore;
     char choice;
     bool tover=false;
+    int tscore;
+    bool p1turn=true;
 public:
-
     void roll()
     {
          rolld();
@@ -21,25 +22,29 @@ public:
         {
             tover=true;
             score=0;
+            std::cout<<endl<<"turn over! No Score!"<<std::endl;
         }
         else
         {
             score+=rollv;
         }
-
-        if (rollv==1)
-        {
-            std::cout<<"turn over! No Score!"<<std::endl;
-        }
     }
-    void hold()
+    void hold(Player &p1,Player &p2)
     {
         tover=true;
-        tscore=tscore+score;
+        if (p1turn==true)
+        {
+            p1.set_ptscore(score);
+        }
+        else
+        {
+            p2.set_ptscore(score);
+        }
+
     }
-    void take_turn()
+    void take_turn(Player &p1,Player &p2)
     {
-        Dice d1;
+
         while (tover==false)
         {
           std::  cout<<"roll or hold? (r/h)";
@@ -50,7 +55,7 @@ public:
             }
             else if ((choice == 'h')||(choice == 'H'))
             {
-                hold ();
+                hold (p1,p2);
 
             }
             else
